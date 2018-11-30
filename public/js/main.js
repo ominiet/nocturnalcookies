@@ -15,10 +15,17 @@ jQuery(document).ready(function($){
 		var undoTimeoutId;
 
 		//add product to cart
+
+	
 		addToCartBtn.on('click', function(event){
 			event.preventDefault();
 			addToCart($(this));
 		});
+
+		$( "#checkout" ).click(function() {
+			window.location.href ="/confirmation.html"
+		});
+
 
 		//open/close cart
 		cartTrigger.on('click', function(event){

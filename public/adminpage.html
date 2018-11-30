@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
   <head>
 
     <meta charset="utf-8">
@@ -24,6 +25,14 @@
     <link href="/public/css/agency.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="/public/css/cartstyle.css"> <!-- Resource style -->
+	
+	<!-- table style -->
+	<style>
+	table, th, td
+	{
+		border: 1px solid black;
+	}
+	</style>
 
   </head>
 
@@ -58,21 +67,45 @@
       <div class="container">
         <div class="intro-text">
           <img class="img-fluid" src="/public/img/logo.png" alt="" style="margin-bottom: 3%">
-          <div class="intro-heading text-uppercase">Your order has been placed.</div>
-          <div class="intro-lead-in">Order Number:</div>
-
-          
+          <div class="intro-heading text-uppercase">Administration</div>
+         
         </div>
       </div>
     </header>
 
-  <!-- Order Screen-->
+  <!-- Table-->
 	<br>
 	<center>
-  	<h2></h2>
-	<p> Order Number: </p>
-	<p id = "orderNumber"></p>
-	<button onclick="random()">Show Order Number</button>
+  	<h2> ORDERS:</h2>
+	<br>
+	<table style ="width:100%">
+		<tr>
+			<th>Date</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Location</th>
+			<th>Cookies</th>
+			<th>Delivered</th>
+		</tr>
+		<tr>
+			<th>11/30/2018</th>
+			<th>Andrew Mandrew</th>
+			<th>555-555-5555</th>
+			<th>Martson</th>
+			<th>5 x Chocolate chip</th>
+			<th>Yes</th>
+		</tr>
+		<tr>
+			<th>12/1/2018</th>
+			<th>Captain Cookie</th>
+			<th>111-222-3333</th>
+			<th>Newell</th>
+			<th>100 x Snickerdoodle</th>
+			<th>No</th>
+		</tr>
+		
+	</table>
+
     </center>
 	<br>
 	
@@ -132,12 +165,7 @@
     <script src="/public/js/agency.min.js"></script>
     <script src="/public/js/main.js"></script>
 
-	<!-- Random number for Order number-->
-	<script type="text/javascript"> 
-	function random() 
-	{
-	document.getElementById("orderNumber").innerHTML = new Date().valueOf();
-	}
+
   </body>
 
 </html>

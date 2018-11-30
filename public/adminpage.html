@@ -58,21 +58,34 @@
       <div class="container">
         <div class="intro-text">
           <img class="img-fluid" src="/public/img/logo.png" alt="" style="margin-bottom: 3%">
-          <div class="intro-heading text-uppercase">Your order has been placed.</div>
-          <div class="intro-lead-in">Order Number:</div>
-
-          
+          <div class="intro-heading text-uppercase">Administration</div>
+         
         </div>
       </div>
     </header>
 
-  <!-- Order Screen-->
+  <!-- Table-->
+	<style>
+	table. th, td
+	{
+	border: 1px solid black;
+	}
+	</style>
 	<br>
 	<center>
-  	<h2></h2>
-	<p> Order Number: </p>
-	<p id = "orderNumber"></p>
-	<button onclick="random()">Show Order Number</button>
+  	<h2> ORDERS:</h2>
+	<br>
+	<table style ="width:100%">
+		<tr>
+			<th>Date</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Location</th>
+			<th>Cookies</th>
+			<th>Delivered</th>
+		</tr>
+	</table>
+
     </center>
 	<br>
 	
@@ -132,12 +145,7 @@
     <script src="/public/js/agency.min.js"></script>
     <script src="/public/js/main.js"></script>
 
-	<!-- Random number for Order number-->
-	<script type="text/javascript"> 
-	function random() 
-	{
-	document.getElementById("orderNumber").innerHTML = new Date().valueOf();
-	}
+
   </body>
 
 </html>

@@ -1,7 +1,9 @@
 jQuery(document).ready(function($){
 	var cartWrapper = $('.cd-cart-container');
 	//product id - you don't need a counter in your real project but you can use your real product id
-	var productId = 0;
+	var productId = 1;
+
+	var cookieName = "";
 
 	if( cartWrapper.length > 0 ) {
 		//store jQuery objects
@@ -25,6 +27,28 @@ jQuery(document).ready(function($){
 		$( "#checkout" ).click(function() {
 			window.location.href ="/confirmation"
 		});
+
+		$( "#addChoc").click(function () {
+			        cookieName = "Chocolate Chip";
+			        productId = 1;			        
+		});
+
+		$( "#addDouble" ).click(function () {
+			        cookieName = "Double Chocolate";
+			        productId = 2;
+
+		});
+		$( "#addSnick" ).click(function () {
+			        cookieName = "Snickerdoodle";
+			        productId = 3;
+
+		});
+		$( "#addOat" ).click(function () {
+			        cookieName = "Oatmeal";
+			        productId = 4;
+
+		});
+
 
 
 		//open/close cart
@@ -60,6 +84,7 @@ jQuery(document).ready(function($){
 			undo.removeClass('visible');
 		});
 	}
+
 
 	function toggleCart(bool) {
 		var cartIsOpen = ( typeof bool === 'undefined' ) ? cartWrapper.hasClass('cart-open') : bool;
@@ -97,8 +122,7 @@ jQuery(document).ready(function($){
 		//this is just a product placeholder
 		//you should insert an item with the selected product info
 		//replace productId, productName, price and url with your real product info
-		productId = productId + 1;
-		var productAdded = $('<li class="product"><div class="product-image"><a href="#0"><img src="/public/img/Cookies/chocolate-chip-sm.png" alt="placeholder" style="max-width: 100%;"></a></div><div class="product-details"><h3><a href="#0">Chocolate Chip</a></h3><span class="price">$2.00</span><div class="actions"><a href="#0" class="delete-item">Delete</a><div class="quantity"><label for="cd-product-'+ productId +'">Qty</label><span class="select"><select id="cd-product-'+ productId +'" name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></span></div></div></div></li>');
+		var productAdded = $('<li class="product"><div class="product-image"><a href="#0"><img src="/public/img/Cookies/'+productId+'.png" alt="placeholder" style="max-width: 100%;"></a></div><div class="product-details"><h3><a href="#0">'+cookieName+'</a></h3><span class="price">$2.00</span><div class="actions"><a href="#0" class="delete-item">Delete</a><div class="quantity"><label for="cd-product-'+ productId +'">Qty</label><span class="select"><select id="cd-product-'+ productId +'" name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></span></div></div></div></li>');
 		cartList.prepend(productAdded);
 	}
 

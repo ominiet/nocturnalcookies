@@ -3,16 +3,18 @@
   box-sizing: border-box;
 }
 
+#chckbox{
+    display:none;
 
+}
 
 #addCookie {
-  
-  display:block;
+  color: white;
   width: 70px;
   height: 70px;
-  padding: 11px 25px;
+  padding: 8px 25px;
   border-radius: 35px;
-  font-size: 34px;
+  font-size: 38px;
   line-height: 1.33;
   background-color: DodgerBlue; 
 
@@ -23,38 +25,42 @@
     box-shadow 0.3s 1.5s;
   white-space: nowrap;
 }
-#addCookie a {
-  text-decoration: none !important;
-  color: white;
-}
+
+
 #addCookie span {
-  font-size: .8em;
-
-    color: DodgerBlue;
- 
-  }
-
-
-#addCookie:hover {
     text-decoration: none !important;
+    color: white;
+    margin-left: 15px;
+    font-size: .8em;
+    line-height: 1.33;
+}
+
+#addCookie button {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  color: white;
+  text-align: center;
+  margin-left: -5px;
+}
+
+#addCookie input {
+ border-radius: 30px;
+ border: none;
+ text-align: center;
+ height: 80%;
+}
+
+
+#chckbox:checked + label {
+       text-decoration: none !important;
        background: black;
     text-indent: 0;
-   
-    color: #FFE8A3;
+    color: black;
     width: 250px;
     box-shadow: 3px 3px 2px rgba(black, 0.15);
 
-
-
 }
-/*#addCookie span:hover {
-    color: white;
-
-    }
-
-#addCookie:active {
- 
-}*/
 
 /* -------------------------------- 
 

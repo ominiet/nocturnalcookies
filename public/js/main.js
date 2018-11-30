@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 		});
 
 		$( "#checkout" ).click(function() {
-			window.location.href ="/confirmation.html"
+			window.location.href ="/confirmation"
 		});
 
 

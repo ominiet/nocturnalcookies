@@ -9,6 +9,10 @@ app.get('/', function(req, res) {
     res.sendFile('./public/index.html', {"root": __dirname});
 });
 
+app.get('/confirmation', function(req, res) {
+    res.sendFile('./public/confirmation.html', {"root": __dirname});
+});
+
 
 app.listen(8080);
 console.log("App Listening on port 8080");

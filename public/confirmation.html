@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Nocturnal Cookies - Bentley's Cookie Delivery Service</title>
+
+</head>
+<body>
+	<h2>Your order has been placed.</h2>
+	<p> Order Number: </p>
+	<p id = "orderNumber"></p>
+	<button onclick="random()">Show Order Number</button>
+
+
+</body>
+<script type="text/javascript"> 
+function random() {
+	document.getElementById("orderNumber").innerHTML = new Date().valueOf();
+
+}
+	</script>
+	</html>

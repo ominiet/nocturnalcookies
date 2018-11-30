@@ -25,7 +25,7 @@
     "fontawesome": "^4.7.2",
     "jquery": "^1.9.1",
     "jquery-easing": "0.0.1",
-    "mongoose": "^5.3.13",
+    "mongoose": "^5.3.14",
     "popper.js": "^1.14.5"
   }
 }

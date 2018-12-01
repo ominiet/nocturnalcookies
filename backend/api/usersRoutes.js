@@ -5,6 +5,22 @@ const express = require('express'),
 
 let User = require('../models/Users.js');
 
+//get all users
+router.get('/',function(req, res) {
+    console.log(req.body);
+    User.find(function(err, users){
+        if (err){
+            res.status(500);
+            res.send();
+        }
+        else {
+            res.status(200);
+            res.json(users);
+            res.send();
+        }
+    })
+});
+
 
 //get user by id
 router.get('/:id', function(req, res){
@@ -23,6 +39,7 @@ router.get('/:id', function(req, res){
 
 //create user
 router.post('/', function(req, res){
+    console.log(req.body);
     let user = new User();
     user.username = req.body.username;
     user.password = req.body.password;
@@ -40,7 +57,7 @@ router.post('/', function(req, res){
     });
 });
 
-//update user
+//update user by id (requires all fields filled out)
 router.put('/:id', function(req,res){
 
    User.findByIdAndUpdate(req.params.id, { $set: {
@@ -62,6 +79,7 @@ router.put('/:id', function(req,res){
    })
 });
 
+//delete user by id
 router.delete('/:id', function(req, res) {
     User.findByIdAndDelete(req.params.id, function(err){
         if (err){
@@ -75,6 +93,7 @@ router.delete('/:id', function(req, res) {
         }
     });
 });
+
 
 
 

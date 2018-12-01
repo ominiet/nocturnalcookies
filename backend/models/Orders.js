@@ -3,24 +3,16 @@
 const mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
-const cookieSchema = new Schema({
-    cookieType:{
-        type: String,
-        required: true,
-    },
-    quantity:{
-        type: Number,
-        min: 0,
-        default: 0
-    }
-});
-
 const orderSchema = new Schema({
     name: {
         type: String,
         required: true
     },
     building: {
+        type: String,
+        required: true
+    },
+    phoneNumber:{
         type: String,
         required: true
     },
@@ -32,7 +24,10 @@ const orderSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    cookies: [ cookieSchema ],
+    cc: Number,
+    sd: Number,
+    dc: Number,
+    om: Number,
     payment: {
         type: String,
         default: "Cash",
@@ -47,7 +42,4 @@ const orderSchema = new Schema({
     }
 });
 
-module.exports = {
-  cookieSchema: cookieSchema,
-  Orders: mongoose.model("Orders", orderSchema)
-};
+module.exports = mongoose.model("Orders", orderSchema);

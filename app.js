@@ -1,6 +1,14 @@
-var express = require('express');
+var express = require('express'),
+    bodyParser = require('body-parser');
 
 var app = express();
+
+//Set up body-parser middleware
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use('/', express.static(__dirname + '/'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
@@ -13,7 +21,7 @@ app.get('/', function(req, res) {
 var mongoose = require('mongoose');
 var dbUri = 'mongodb://cookieuser:securepass1@ds123434.mlab.com:23434/noc-cookies';
 
-mongoose.connect(dbUri);
+mongoose.connect(dbUri, { useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
@@ -22,6 +30,12 @@ db.on('error', console.error.bind(console,'MongoDB connection error: '));
 db.once('open', function(){
     console.log("connected");
 });
+
+//API routes
+let users = require('./backend/api/usersRoutes.js');
+
+
+app.use('/api/users', users);
 
 var User = require("./backend/models/Users");
 /*

@@ -3,30 +3,63 @@
   box-sizing: border-box;
 }
 
+#chckbox{
+    display:none;
 
+}
 
-.cd-add-to-cart {
-  text-decoration: none !important;
+#addCookie {
   color: white;
-  display:block;
   width: 70px;
-    height: 70px;
-    padding: 11px 25px;
-    border-radius: 35px;
-    font-size: 34px;
-    line-height: 1.33;
-
+  height: 70px;
+  padding: 8px 25px;
+  border-radius: 35px;
+  font-size: 38px;
+  line-height: 1.33;
   background-color: DodgerBlue; 
+
+  overflow: hidden;
+  transition: 
+    all        1.2s,
+    border     0.5s 1.2s,
+    box-shadow 0.3s 1.5s;
+  white-space: nowrap;
 }
-.cd-add-to-cart:hover {
-  background: black;
-  /*color:black;*/
-  /*#42a2e1;*/
+
+
+#addCookie span {
+    text-decoration: none !important;
+    color: white;
+    margin-left: 15px;
+    font-size: .8em;
+    line-height: 1.33;
 }
-.cd-add-to-cart:active {
-  -webkit-transform: scale(0.9);
-      -ms-transform: scale(0.9);
-          transform: scale(0.9);
+
+#addCookie button {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  color: white;
+  text-align: center;
+  margin-left: -5px;
+}
+
+#addCookie input {
+ border-radius: 30px;
+ border: none;
+ text-align: center;
+ height: 80%;
+}
+
+
+#chckbox:checked + label {
+       text-decoration: none !important;
+       background: black;
+    text-indent: 0;
+    color: black;
+    width: 250px;
+    box-shadow: 3px 3px 2px rgba(black, 0.15);
+
 }
 
 /* -------------------------------- 

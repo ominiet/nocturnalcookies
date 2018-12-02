@@ -58,18 +58,33 @@
       <div class="container">
         <div class="intro-text">
           <img class="img-fluid" src="/public/img/logo.png" alt="" style="margin-bottom: 3%">
-          <div class="intro-heading text-uppercase">Your order has been placed.</div>   
+          <div class="intro-heading text-uppercase">Sign In Below</div>
+          
+
+          
         </div>
       </div>
     </header>
 
-  <!-- Order Screen-->
+  <!-- Login Screen-->
 	<br>
 	<center>
-  	<h2></h2>
-	<p> Order Number: </p>
-	<p id = "orderNumber"></p>
-	<button onclick="random()">Show Order Number</button>
+  	<h2>Log In</h2>
+	<form>
+		User name:<br>
+	<input type="text" name="username"><br>
+		User password:<br>
+	<input type="password" name="psw">
+	</form> 
+	<br>
+	<input type="submit">
+	
+	
+	
+	
+	
+	
+</form> 
     </center>
 	<br>
 	
@@ -129,12 +144,6 @@
     <script src="/public/js/agency.min.js"></script>
     <script src="/public/js/main.js"></script>
 
-	<!-- Random number for Order number-->
-	<script type="text/javascript"> 
-	function random() 
-	{
-	document.getElementById("orderNumber").innerHTML = new Date().valueOf();
-	}
   </body>
 
 </html>

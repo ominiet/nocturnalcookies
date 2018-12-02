@@ -29,6 +29,23 @@ app.get('/', function(req, res) {
     res.sendFile('./public/index.html', {"root": __dirname});
 });
 
+
+app.get('/confirmation', function(req, res) {
+    res.sendFile('./public/confirmation.html', {"root": __dirname});
+});
+
+app.get('/adminpage', function(req, res) {
+    res.sendFile('./public/adminpage.html', {"root": __dirname});
+});
+
+app.get('/signin', function(req, res) {
+    res.sendFile('./public/signin.html', {"root": __dirname});
+});
+
+app.get('/signup', function(req, res) {
+    res.sendFile('./public/signup.html', {"root": __dirname});
+});
+
 //Set up mongoose. Will be moved to another location later
 var mongoose = require('mongoose');
 var dbUri = require('./config/database').database;

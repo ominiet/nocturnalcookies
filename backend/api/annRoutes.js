@@ -20,7 +20,6 @@ router.get('/', function(req, res){
 
 //create user
 router.post('/', function(req, res){
-    console.log(req.body);
     let ann = new Announcement();
 
     if (req.body.user){

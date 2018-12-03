@@ -16,7 +16,6 @@ router.get('/',function(req, res) {
         else {
             res.status(200);
             res.json(orders);
-            res.send();
         }
     })
 });
@@ -32,7 +31,6 @@ router.get('/:id', function(req, res){
         }else {
             res.status(200);
             res.json(order);
-            res.send();
         }
     });
 });

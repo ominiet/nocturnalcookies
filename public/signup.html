@@ -1,0 +1,35 @@
+<!-- Login Screen-->
+<br>
+<center>
+  <h2></h2>
+<form ng-submit="signUp(user)" style="border:1px solid #ccc">
+<div class="container">
+<br>
+<h1>Create Employee</h1>
+  <p>Fill in this form to create an account for an employee.</p>
+<hr>
+
+  <label for="username"><b>Username</b></label>
+<br>
+  <input type="text" placeholder="Enter Username" name="username" ng-model="user.username" required>
+<br>
+  <label for="psw"><b>Password</b></label>
+<br>
+  <input type="password" placeholder="Enter Password" name="psw" ng-model="user.password" required>
+<br>
+  <label for="psw-repeat"><b>Repeat Password</b></label>
+<br>
+  <input type="password" placeholder="Repeat Password" name="psw-repeat" ng-model="user.password2" required>
+<br>
+  <label>
+
+  </label>
+
+  <div class="clearfix">
+  <button type="submit" class="signupbtn">Sign Up</button>
+  </div>
+  <br>
+</div>
+</form>
+  </center>
+<br>

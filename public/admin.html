@@ -1,0 +1,89 @@
+<!-- LIST OF ORDERS -->
+    <style>
+    table
+    {
+   	 font-family: arial, sans-serif;
+   	 border-collapse: collapse;
+   	 width: 100%;
+    }
+
+    td, th
+    {
+   	 border: 1px solid #dddddd;
+   	 text-align: left;
+   	 padding: 8px;
+    }
+
+    tr:nth-child(even)
+    {
+   	 background-color: #dddddd;
+    }
+    </style>
+
+
+<table style ="width:100%">
+   	 <tr>
+       <th>Date</th>
+   		 <th>Name</th>
+   		 <th>Phone</th>
+       <th>Location</th>
+       <th># CC</th>
+       <th># DC</th>
+       <th># SD</th>
+       <th># OM</th>
+       <th># Cookies</th>
+       <th>Cost</th>
+       <th></th>
+       <th></th>
+       <th></th>
+   	 </tr>
+
+   	 <tr ng-repeat="order in orders">
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.orderTime | date:'shortDate'}}</td>
+   		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.name }}</td>
+   		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.phone }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)"">{{ order.building }} {{ order.room }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.cc }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.dc }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.sd }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.om }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)}}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">${{ calculateCost(parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)) }}</td>
+       <td><i class="fas fa-check"></i></td>
+       <td><i class="fas fa-pencil-alt"></i></td>
+       <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+   	 </tr>
+
+ </table>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Order {{ orderOfInterest._id }}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{ orderOfInterest.name }} ({{ orderOfInterest.building }} {{ orderOfInterest.room }})</p>
+          <p>Timestamp: {{ orderOfInterest.orderTime | date:'short'}}</p>
+          <p>Method of Payment: {{ orderOfInterest.payment }}</p>
+          <div>Order Contents:
+          <ul>
+            <li>{{ orderOfInterest.cc }} Chocolate Chip</li>
+            <li>{{ orderOfInterest.dc }} Double Chocolate</li>
+            <li>{{ orderOfInterest.sd }} Snickerdoodle</li>
+            <li>{{ orderOfInterest.om }} Oatmeal</li>
+          </ul>
+          <p>TOTAL COOKIES: <strong>{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om) }}</strong> | TOTAL COST: <strong>${{ calculateCost(parseInt(orderOfInterest.cc) + parseInt(orderOfInterest.dc) + parseInt(orderOfInterest.sd) + parseInt(orderOfInterest.om)) }}</strong></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

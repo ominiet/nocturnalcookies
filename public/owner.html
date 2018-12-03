@@ -1,0 +1,37 @@
+<!-- LIST OF USERS -->
+    <style>
+    table
+    {
+   	 font-family: arial, sans-serif;
+   	 border-collapse: collapse;
+   	 width: 100%;
+    }
+
+    td, th
+    {
+   	 border: 1px solid #dddddd;
+   	 text-align: left;
+   	 padding: 8px;
+    }
+
+    tr:nth-child(even)
+    {
+   	 background-color: #dddddd;
+    }
+    </style>
+
+
+<table style ="width:100%">
+   	 <tr>
+   		 <th>Username</th>
+   		 <th>Role</th>
+       <th></th>
+   	 </tr>
+
+   	 <tr ng-repeat="user in users">
+   		 <td>{{ user.username }}</td>
+   		 <td>{{ user.role }}</td>
+       <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+   	 </tr>
+
+ </table>

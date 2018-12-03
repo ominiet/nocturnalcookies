@@ -50,8 +50,7 @@
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)}}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">${{ calculateCost(parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)) }}</td>
        <td><i class="fas fa-check"></i></td>
-       <td><i class="fas fa-pencil-alt"></i></td>
-       <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+       <td><i class="fa fa-trash" ng-click="deleteOrder(order)" aria-hidden="true"></i></td>
    	 </tr>
 
  </table>

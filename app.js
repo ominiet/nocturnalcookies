@@ -20,6 +20,11 @@ app.get('*', function(req, res, next){
     res.locals.user = req.user || null;
     next();
 });
+//reply with whether or not the user is logged in
+app.get('/loggedin', function(req, res){
+    res.status(req.isAuthenticated() ? 200 : 401);
+    res.send(req.isAuthenticated() ? req.user : '0');
+});
 
 //set up routes for application
 app.use('/', express.static(__dirname + '/'));

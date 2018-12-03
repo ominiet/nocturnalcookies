@@ -9,7 +9,7 @@ module.exports = function(passport){
     passport.use(new LocalStrategy(function(username, password, done){
         let query = {username:username};
         User.findOne(query, function(err, user){
-            if (err) throw err;
+            if (err) console.log(err);
             if (!user){
                 return done(null, false, {message: 'No user found'});
             }
@@ -29,10 +29,12 @@ module.exports = function(passport){
     }));
 
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user ) {
+        let query = {_id: id};
+        User.findOne(query, function(err, user) {
+            if (err) throw err;
            done(err, user);
         });
     })

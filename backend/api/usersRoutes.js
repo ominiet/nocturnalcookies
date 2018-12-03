@@ -8,8 +8,7 @@ const express = require('express'),
 let User = require('../models/Users.js');
 
 //get all users
-router.get('/', ensureAuthenticated, function(req, res) {
-    console.log(req.body);
+router.get('/', checkOwner, function(req, res) {
     User.find(function(err, users){
         if (err){
             res.status(500);
@@ -18,33 +17,17 @@ router.get('/', ensureAuthenticated, function(req, res) {
         else {
             res.status(200);
             res.json(users);
-            res.send();
         }
     })
 });
 
 
-//get user by id
-router.get('/:id', function(req, res){
-    User.findById(req.params.id, function(err, user){
-        if (err){
-            console.log(err);
-            res.status(404);
-            res.send();
-        }else {
-            res.status(200);
-            res.json(user);
-            res.send();
-        }
-    });
-});
+
 
 //create user
-router.post('/',/* ensureAuthenticated,*/function(req, res){
-    console.log(req.body);
+router.post('/', checkOwner,function(req, res){
     let user = new User();
     user.username = req.body.username;
-    //user.password = req.body.password;
     user.role = req.body.role;
     let pass = req.body.password;
     bcrypt.genSalt(10,function(err,salt){
@@ -53,8 +36,6 @@ router.post('/',/* ensureAuthenticated,*/function(req, res){
                 console.log(err);
             }
             else {
-                console.log("Password was: " + pass);
-                console.log("Password is now " + hash);
                 user.password = hash;
                 user.save(function(err){
                     if (err){
@@ -97,7 +78,7 @@ router.post('/',/* ensureAuthenticated,*/function(req, res){
 });*/
 
 //delete user by id
-router.delete('/:id', ensureAuthenticated, function(req, res) {
+router.delete('/:id', checkOwner, function(req, res) {
     User.findByIdAndDelete(req.params.id, function(err){
         if (err){
             res.status(500);
@@ -112,30 +93,49 @@ router.delete('/:id', ensureAuthenticated, function(req, res) {
 });
 
 
-router.post('login', function(req, res, next) {
-    passport.authenticate('local', {    successRedirect: '/',
-                                        failureRedirect: '/users/login',
-                                        failureFlash: true
-
+router.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { return res.redirect('/login'); }
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return res.redirect('/');
+        });
     }) (req, res, next)
 });
 
-router.get('logout', function(req, res){
+router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
 
-function ensureAuthenticated(req, res, next){
-    if (req.isAuthenticated()){
-        return next();
+//get user by id
+router.get('/:id', function(req, res){
+    if (req.user.id === req.params.id) {
+        User.findById(req.params.id, function (err, user) {
+            if (err) {
+                console.log(err);
+                res.status(404);
+                res.send();
+            } else {
+                res.status(200);
+                res.json(user);
+            }
+        });
     }
     else {
-        //handle better (send response code)
-        res.redirect('/');
+        res.status(403);
+        res.send();
     }
+});
+
+function checkOwner(req, res, next) {
+    if(req.isAuthenticated() && req.user.role === 'Owner'){
+        return next();
+    }
+    else res.redirect('/');
 }
 
 
 module.exports = router;
 
-//TODO: go back and fix routes when they work with front end

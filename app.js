@@ -1,6 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    passport = require('passport');
+    passport = require('passport'),
+    session = require('express-session');
 
 var app = express();
 
@@ -10,6 +11,7 @@ app.use(bodyParser.json());
 
 //Passport Config
 require('./config/passport')(passport);
+app.use(session({secret : 'app secreet', resave: true, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -29,23 +31,6 @@ app.get('/', function(req, res) {
     res.sendFile('./public/index.html', {"root": __dirname});
 });
 
-
-app.get('/confirmation', function(req, res) {
-    res.sendFile('./public/confirmation.html', {"root": __dirname});
-});
-
-app.get('/adminpage', function(req, res) {
-    res.sendFile('./public/adminpage.html', {"root": __dirname});
-});
-
-app.get('/signin', function(req, res) {
-    res.sendFile('./public/signin.html', {"root": __dirname});
-});
-
-app.get('/signup', function(req, res) {
-    res.sendFile('./public/signup.html', {"root": __dirname});
-});
-
 //Set up mongoose. Will be moved to another location later
 var mongoose = require('mongoose');
 var dbUri = require('./config/database').database;
@@ -57,7 +42,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console,'MongoDB connection error: '));
 db.once('open', function(){
-    console.log("connected");
+    console.log("Connected to mongodb at: " + dbUri);
 });
 
 

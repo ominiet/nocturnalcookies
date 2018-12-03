@@ -23,6 +23,7 @@
 
 <table style ="width:100%">
    	 <tr>
+         <th>Delivered</th>
        <th>Date</th>
    		 <th>Name</th>
    		 <th>Phone</th>
@@ -39,6 +40,7 @@
    	 </tr>
 
    	 <tr ng-repeat="order in orders">
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.delivered}}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.orderTime | date:'shortDate'}}</td>
    		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.name }}</td>
    		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.phone }}</td>
@@ -49,7 +51,7 @@
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.om }}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)}}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">${{ calculateCost(parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)) }}</td>
-       <td><i class="fas fa-check"></i></td>
+       <td><i class="fas fa-check" ng-click="deliverCookies(order)"></i></td>
        <td><i class="fa fa-trash" ng-click="deleteOrder(order)" aria-hidden="true"></i></td>
    	 </tr>
 

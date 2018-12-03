@@ -1,9 +1,9 @@
 angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
     function ($scope, $http, $routeParams, $location, loggedin, $rootScope) {
-
+        //$rootScope.Scope.defined = false;
         $scope.orderOfInterest = {};
 
-        $http.get('/loggedin').success(function (response){
+        $http.get('/loggedin').success(function (response) {
             console.log("res: " + response.status);
             $scope.loggedin = true;
             console.log($scope.loggedin);
@@ -12,13 +12,17 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             $scope.loggedin = false;
             console.log($scope.loggedin);
         });
-      
-      $scope.newOrder = {};
-    $scope.newOrder.cc = $rootScope.numcc;
-    $scope.newOrder.dc = $rootScope.numdc;
-    $scope.newOrder.sd = $rootScope.numsd;
-    $scope.newOrder.om = $rootScope.numom;
 
+        // $scope.newOrder = {};
+        // if ($rootScope.defined) {
+        //     $scope.newOrder.cc = $rootScope.numdc;
+        //
+        //     $scope.newOrder.dc = $rootScope.numdc;
+        //
+        //     $scope.newOrder.sd = $rootScope.numsd;
+        //
+        //     $scope.newOrder.om = $rootScope.numom;
+        // }
         $http.get('http://localhost:8080/api/orders').then(function (response) {
             $scope.orders = response.data;
             //console.log($scope.orders);
@@ -32,8 +36,7 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
         }, function (error) {
             console.log('Could not get users', error);
         });
-      
-      
+
 
         $scope.signUp = function (user) {
             console.log('INPUT USER' + user);
@@ -46,15 +49,16 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
                 $location.url('/login')
             });
         };
-
-      $scope.checkout = function() {
-      $rootScope.numcc = $scope.cc;
-      $rootScope.numdc = $scope.dc;
-      $rootScope.numsd = $scope.sd;
-      $rootScope.numom = $scope.om;
-      console.log($rootScope.numcc);
-      $location.path('/checkout');
-    };
+        // $scope.checkout = function () {
+        //     console.log("Checkout");
+        //     $rootScope.numcc = $scope.cc;
+        //     $rootScope.numdc = $scope.dc;
+        //     $rootScope.numsd = $scope.sd;
+        //     $rootScope.numom = $scope.om;
+        //     $rootScope.defined = true;
+        //     console.log($rootScope.numcc);
+        //     $location.path('/checkout');
+        // };
 
         $scope.signIn = function (user) {
             $http.post('http://localhost:8080/api/users/login', user).then(function (response) {
@@ -63,25 +67,31 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             });
         };
         //TODO: make so you dont have to reload the page
-        $scope.deleteOrder = function(order){
+        $scope.deleteOrder = function (order) {
             console.log(order);
 
-            $http.delete("/api/orders/" + order._id).then(function(){
+            $http.delete("/api/orders/" + order._id).then(function () {
             })
         };
-        $scope.deleteUser = function(user){
+        $scope.deleteUser = function (user) {
             console.log(user);
 
-            $http.delete("/api/users/" + user._id).then(function(){
+            $http.delete("/api/users/" + user._id).then(function () {
             })
         };
 
-        $scope.DeliverCookies = function(order){
-            order.delivered=true;
+        $scope.deliverCookies = function (order) {
+            order.delivered = true;
             console.log(order);
-            $http.put("api/orders/" + order._id, order).then(function(){
+            $http.put("api/orders/" + order._id, order).then(function () {
 
-            })
+            });
+        };
+        $scope.placeOrder = function(order){
+          console.log(order);
+            $http.post("api/orders/", order).then(function () {
+                $location.url("/");
+            });
         };
 
         $scope.calculateCost = function (numcookies) {

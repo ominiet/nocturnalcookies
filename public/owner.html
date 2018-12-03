@@ -28,10 +28,10 @@
        <th></th>
    	 </tr>
 
-   	 <tr ng-repeat="user in users">
+   	 <tr ng-repeat="user in users" >
    		 <td>{{ user.username }}</td>
    		 <td>{{ user.role }}</td>
-       <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+       <td><i class="fa fa-trash " ng-click="deleteUser(user)"aria-hidden="true"></i></td>
    	 </tr>
 
  </table>

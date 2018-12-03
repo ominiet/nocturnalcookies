@@ -7,7 +7,6 @@ let Order = require('../models/Orders');
 
 //get all orders
 router.get('/', ensureAuthenticated, function(req, res) {
-    console.log(req.body);
     Order.find(function(err, orders){
         if (err){
             res.status(500);
@@ -115,7 +114,6 @@ function ensureAuthenticated(req, res, next){
         return next();
     }
     else {
-        console.log("Didnt work. Redirecting");
         res.redirect('/');
     }
 }

@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
         $http.get('/loggedin').success(function(user){
             // Authenticated
             if (user !== '0') {
-                deferred.resolve(true);
+                deferred.resolve();
             }
             // Not Authenticated
             else {
@@ -89,6 +89,10 @@ app.config(function ($routeProvider) {
           loggedin : checkOwner
       }
   })
+  .when('/logout', {
+      templateUrl: '/public/logout.html',
+        controller: 'logoutController'
+    })
   .otherwise({
     redirectTo: '/'
   });

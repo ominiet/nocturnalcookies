@@ -22,6 +22,7 @@ app.get('*', function(req, res, next){
 });
 //reply with whether or not the user is logged in
 app.get('/loggedin', function(req, res){
+    res.status(req.isAuthenticated() ? 200 : 401);
     res.send(req.isAuthenticated() ? req.user : '0');
 });
 

@@ -1,10 +1,17 @@
-angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location',
-    function ($scope, $http, $routeParams, $location, loggedin) {
+angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+    function ($scope, $http, $routeParams, $location, loggedin, $rootScope) {
 
         $scope.orderOfInterest = {};
-        $scope.loggedin = loggedin;
-        console.log(loggedin);
 
+        $http.get('/loggedin').success(function (response){
+            console.log("res: " + response.status);
+            $scope.loggedin = true;
+            console.log($scope.loggedin);
+        }).error(function (response) {
+            console.log("res: " + response.status);
+            $scope.loggedin = false;
+            console.log($scope.loggedin);
+        });
 
         $http.get('http://localhost:8080/api/orders').then(function (response) {
             $scope.orders = response.data;
@@ -28,14 +35,37 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             }
             user.role = 'Employee';
             $http.post('http://localhost:8080/api/users', user).then(function (response) {
-
+                $location.url('/login')
             });
         };
 
 
         $scope.signIn = function (user) {
             $http.post('http://localhost:8080/api/users/login', user).then(function (response) {
+                if (response.status === 200) $location.url('/admin');
+                else $location.url('/login');
             });
+        };
+        //TODO: make so you dont have to reload the page
+        $scope.deleteOrder = function(order){
+            console.log(order);
+
+            $http.delete("/api/orders/" + order._id).then(function(){
+            })
+        };
+        $scope.deleteUser = function(user){
+            console.log(user);
+
+            $http.delete("/api/users/" + user._id).then(function(){
+            })
+        };
+
+        $scope.DeliverCookies = function(order){
+            order.delivered=true;
+            console.log(order);
+            $http.put("api/orders/" + order._id, order).then(function(){
+
+            })
         };
 
         $scope.calculateCost = function (numcookies) {

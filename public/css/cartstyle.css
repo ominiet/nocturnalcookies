@@ -16,10 +16,10 @@
   border-radius: 35px;
   font-size: 38px;
   line-height: 1.33;
-  background-color: DodgerBlue; 
+  background-color: DodgerBlue;
 
   overflow: hidden;
-  transition: 
+  transition:
     all        1.2s,
     border     0.5s 1.2s,
     box-shadow 0.3s 1.5s;
@@ -62,9 +62,9 @@
 
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-cart-container::before {
@@ -595,6 +595,13 @@ Main Components
 .cart-open .cd-cart .checkout:hover em::after {
   opacity: 1;
 }
+.quantity-selector {
+  width: 33%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+
 @media only screen and (min-width: 768px) {
   .cd-cart .body li:not(:last-of-type) {
     margin-bottom: 14px;

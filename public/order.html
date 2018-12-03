@@ -29,14 +29,10 @@
 
 <div class="row">
       <div class="col-sm-6 col-md-3 portfolio-item">
-        <input id="chckbox" type="checkbox"/>
-            <label id="addCookie" for="chckbox">+
-              <span> Qty
-                <input type="number" name="quantity" min="1" max="24" placeholder="1">
-                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
-              </span>
-            </label>
 
+
+
+        <input class="form-control quantity-selector" type="number" id="ccq" ng-model="cc">
         <img class="cookie-img" src="/public/img/Cookies/chocolate-chip-sm.png" alt="">
 
         <div class="portfolio-caption">
@@ -47,15 +43,8 @@
       </div>
       <div class="col-sm-6 col-md-3 portfolio-item">
 
-          <input id="chckbox" type="checkbox"/>
-            <label id="addCookie" for="chckbox">+
-              <span> Qty </span>
-                <input type="number" name="quantity" min="1" max="24" placeholder="1">
-                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
 
-            </label>
-
-
+        <input class="form-control quantity-selector" type="number" id="dcq" ng-model="dc">
           <img class="cookie-img" src="/public/img/Cookies/double-chocolate-sm.png" alt="">
 
         <div class="portfolio-caption">
@@ -66,15 +55,8 @@
 
       <div class="col-sm-6 col-md-3 portfolio-item">
 
-      <input id="chckbox" type="checkbox"/>
-            <label id="addCookie" for="chckbox">+
-              <span> Qty </span>
-                <input type="number" name="quantity" min="1" max="24" placeholder="1">
-                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
-
-            </label>
-
-          <img class="cookie-img" src="/public/img/Cookies/snickerdoodle-sm.png" alt="">
+        <input class="form-control quantity-selector" type="number" id="sdq" ng-model="sd">
+        <img class="cookie-img" src="/public/img/Cookies/snickerdoodle-sm.png" alt="">
 
         <div class="portfolio-caption">
           <h4>Snickerdoodle</h4>
@@ -84,14 +66,7 @@
 
       <div class="col-sm-6 col-md-3 portfolio-item">
 
-      <input id="chckbox" type="checkbox"/>
-            <label id="addCookie" for="chckbox">+
-              <span> Qty </span>
-                <input type="number" name="quantity" min="1" max="24" placeholder="1">
-                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
-
-            </label>
-
+          <input class="form-control quantity-selector" type="number" id="omq" ng-model="om">
           <img class="cookie-img" src="/public/img/Cookies/oatmeal-sm.png" alt="">
 
         <div class="portfolio-caption">
@@ -99,6 +74,9 @@
           <p class="text-muted">Chewy oatmeal cookie with a hint of a sweet caramel glaze. Not your Grandma’s oatmeal cookie.</p>
         </div>
       </div>
+    </div>
+    <div class="row">
+    <button class="btn btn-large btn-block btn-primary" type="button" ng-click="checkout()">CHECKOUT</button>
     </div>
   </div>
 </section>

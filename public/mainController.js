@@ -12,6 +12,12 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             $scope.loggedin = false;
             console.log($scope.loggedin);
         });
+      
+      $scope.newOrder = {};
+    $scope.newOrder.cc = $rootScope.numcc;
+    $scope.newOrder.dc = $rootScope.numdc;
+    $scope.newOrder.sd = $rootScope.numsd;
+    $scope.newOrder.om = $rootScope.numom;
 
         $http.get('http://localhost:8080/api/orders').then(function (response) {
             $scope.orders = response.data;
@@ -26,6 +32,8 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
         }, function (error) {
             console.log('Could not get users', error);
         });
+      
+      
 
         $scope.signUp = function (user) {
             console.log('INPUT USER' + user);
@@ -39,6 +47,14 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             });
         };
 
+      $scope.checkout = function() {
+      $rootScope.numcc = $scope.cc;
+      $rootScope.numdc = $scope.dc;
+      $rootScope.numsd = $scope.sd;
+      $rootScope.numom = $scope.om;
+      console.log($rootScope.numcc);
+      $location.path('/checkout');
+    };
 
         $scope.signIn = function (user) {
             $http.post('http://localhost:8080/api/users/login', user).then(function (response) {

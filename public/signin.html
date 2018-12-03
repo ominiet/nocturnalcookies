@@ -2,20 +2,13 @@
 <br>
 <center>
   <h2>Log In</h2>
-<form>
+<form ng-submit="signIn(user)">
   User name:<br>
-<input type="text" name="username"><br>
+<input type="text" name="username" ng-model="user.username"><br>
   User password:<br>
-<input type="password" name="psw">
-</form>
+<input type="password" name="psw" ng-model="user.password">
 <br>
-<input type="submit">
-
-
-
-
-
-
+  <button type="submit" >Log In</button>
 </form>
   </center>
 <br>

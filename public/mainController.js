@@ -30,6 +30,16 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
       });
     };
 
+
+
+    $scope.signIn = function(user){
+          console.log('INPUT USER ' + user);
+
+          $http.post('http://localhost:8080/api/users/login', user).then(function(response) {
+              console.log(response);
+          });
+      };
+
     $scope.calculateCost = function(numcookies) {
       var total = parseInt(numcookies);
       var price = 0;
@@ -51,8 +61,6 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
     $scope.updateOrderOfInterest = function(o){
       $scope.orderOfInterest = o;
     };
-
-
 
 
   }]);

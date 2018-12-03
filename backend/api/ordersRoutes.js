@@ -6,7 +6,7 @@ const express = require('express'),
 let Order = require('../models/Orders');
 
 //get all orders
-router.get('/',function(req, res) {
+router.get('/', ensureAuthenticated, function(req, res) {
     console.log(req.body);
     Order.find(function(err, orders){
         if (err){
@@ -22,7 +22,7 @@ router.get('/',function(req, res) {
 
 
 //get order by id
-router.get('/:id', function(req, res){
+router.get('/:id', ensureAuthenticated, function(req, res){
     Order.findById(req.params.id, function(err, order){
         if (err){
             console.log(err);
@@ -35,7 +35,7 @@ router.get('/:id', function(req, res){
     });
 });
 
-//create user
+//create order
 router.post('/', function(req, res){
 
     let order = new Order();
@@ -66,7 +66,7 @@ router.post('/', function(req, res){
 //Order
 //update user by id (requires all fields filled out)
 
-router.put('/:id', function(req,res){
+router.put('/:id', ensureAuthenticated, function(req,res){
 
     Order.findByIdAndUpdate(req.params.id, { $set: {
             name: req.body.name,
@@ -96,7 +96,7 @@ router.put('/:id', function(req,res){
 });
 
 //delete order by id
-router.delete('/:id', function(req, res) {
+router.delete('/:id', ensureAuthenticated, function(req, res) {
     Order.findByIdAndDelete(req.params.id, function(err){
         if (err){
             res.status(500);
@@ -110,9 +110,14 @@ router.delete('/:id', function(req, res) {
     });
 });
 
-
-
-
-
+function ensureAuthenticated(req, res, next){
+    if (req.isAuthenticated()){
+        return next();
+    }
+    else {
+        console.log("Didnt work. Redirecting");
+        res.redirect('/');
+    }
+}
 
 module.exports = router;

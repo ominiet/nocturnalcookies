@@ -1,7 +1,12 @@
-angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location',
-  function ($scope, $http, $routeParams, $location) {
+angular.module('listings').controller('mainController', ['$scope', '$http', '$rootScope', '$location',
+  function ($scope, $http, $rootScope, $location) {
 
     $scope.orderOfInterest = {};
+    $scope.newOrder = {};
+    $scope.newOrder.cc = $rootScope.numcc;
+    $scope.newOrder.dc = $rootScope.numdc;
+    $scope.newOrder.sd = $rootScope.numsd;
+    $scope.newOrder.om = $rootScope.numom;
 
     $http.get('http://localhost:8080/api/orders').then(function(response){
       $scope.orders = response.data;
@@ -16,6 +21,15 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
     }, function(error){
       console.log('Could not get users', error);
     });
+
+    $scope.checkout = function() {
+      $rootScope.numcc = $scope.cc;
+      $rootScope.numdc = $scope.dc;
+      $rootScope.numsd = $scope.sd;
+      $rootScope.numom = $scope.om;
+      console.log($rootScope.numcc);
+      $location.path('/checkout');
+    };
 
     $scope.signUp = function(user){
       console.log('INPUT USER' + user);

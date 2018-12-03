@@ -16,8 +16,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
         else {
             res.status(200);
             res.json(orders);
-            //console.log(res);
-            //res.send();
         }
     })
 });
@@ -33,7 +31,6 @@ router.get('/:id', ensureAuthenticated, function(req, res){
         }else {
             res.status(200);
             res.json(order);
-            //res.send();
         }
     });
 });

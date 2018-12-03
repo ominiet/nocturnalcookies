@@ -1,0 +1,104 @@
+<!-- Portfolio Grid -->
+<section class="bg-light" id="cookies" ng-controller="mainController">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading text-uppercase">Select Your Cookies</h2>
+        <table class="table table-bordered" style="margin: auto; width: 70%; margin-top: 5%; margin-bottom:5%;">
+          <tr style="text-align:center">
+            <th># Cookies {{test}}</th>
+            <td >1</td>
+            <td >3</td>
+            <td >6</td>
+            <td >12</td>
+            <td >18</td>
+            <td >24</td>
+          </tr>
+          <tr>
+            <th >Price</th>
+            <td >$2</td>
+            <td >$5</td>
+            <td >$10</td>
+            <td >$18</td>
+            <td >$26</td>
+            <td >$32</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+<div class="row">
+      <div class="col-sm-6 col-md-3 portfolio-item">
+        <input id="chckbox" type="checkbox"/>
+            <label id="addCookie" for="chckbox">+
+              <span> Qty
+                <input type="number" name="quantity" min="1" max="24" placeholder="1">
+                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
+              </span>
+            </label>
+
+        <img class="cookie-img" src="/public/img/Cookies/chocolate-chip-sm.png" alt="">
+
+        <div class="portfolio-caption">
+          <h4>Chocolate Chip</h4>
+
+          <p class="text-muted">Everyone’s favorite cookie. Baked with a touch of sea salt for a perfect taste. The ultimate crowd-pleaser.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 portfolio-item">
+
+          <input id="chckbox" type="checkbox"/>
+            <label id="addCookie" for="chckbox">+
+              <span> Qty </span>
+                <input type="number" name="quantity" min="1" max="24" placeholder="1">
+                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
+
+            </label>
+
+
+          <img class="cookie-img" src="/public/img/Cookies/double-chocolate-sm.png" alt="">
+
+        <div class="portfolio-caption">
+          <h4>Double Chocolate</h4>
+          <p class="text-muted">Everyone’s 2nd favorite cookie. Baked with a touch of sea salt for a perfect taste. The company favorite.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3 portfolio-item">
+
+      <input id="chckbox" type="checkbox"/>
+            <label id="addCookie" for="chckbox">+
+              <span> Qty </span>
+                <input type="number" name="quantity" min="1" max="24" placeholder="1">
+                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
+
+            </label>
+
+          <img class="cookie-img" src="/public/img/Cookies/snickerdoodle-sm.png" alt="">
+
+        <div class="portfolio-caption">
+          <h4>Snickerdoodle</h4>
+          <p class="text-muted">The soft cinnamon sugar cookie. Warmed up and guaranteed to delight those looking for something on the lighter side.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3 portfolio-item">
+
+      <input id="chckbox" type="checkbox"/>
+            <label id="addCookie" for="chckbox">+
+              <span> Qty </span>
+                <input type="number" name="quantity" min="1" max="24" placeholder="1">
+                <button id="addDouble" class="cd-add-to-cart" data-price="2.00"> + </button>
+
+            </label>
+
+          <img class="cookie-img" src="/public/img/Cookies/oatmeal-sm.png" alt="">
+
+        <div class="portfolio-caption">
+          <h4>Oatmeal</h4>
+          <p class="text-muted">Chewy oatmeal cookie with a hint of a sweet caramel glaze. Not your Grandma’s oatmeal cookie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

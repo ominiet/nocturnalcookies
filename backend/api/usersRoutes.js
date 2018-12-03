@@ -40,7 +40,7 @@ router.get('/:id', function(req, res){
 });
 
 //create user
-router.post('/', ensureAuthenticated, function(req, res){
+router.post('/',/* ensureAuthenticated,*/function(req, res){
     console.log(req.body);
     let user = new User();
     user.username = req.body.username;

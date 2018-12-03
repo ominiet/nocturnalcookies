@@ -28,6 +28,18 @@ app.config(function ($routeProvider) {
     templateUrl: 'public/signup.html',
     controller: 'mainController'
   })
+  .when('/checkout', {
+    templateUrl: 'public/checkout.html',
+    controller: 'mainController'
+  })
+  .when('/admin', {
+    templateUrl: 'public/admin.html',
+    controller: 'mainController'
+  })
+  .when('/owner', {
+    templateUrl: 'public/owner.html',
+    controller: 'mainController'
+  })
   .otherwise({
     redirectTo: '/'
   });

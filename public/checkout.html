@@ -1,0 +1,86 @@
+<!-- Order Screen-->
+<center>
+  <h2 style="margin-top: 10%">Complete Your Order</h2>
+  <form style = "width: 30%; margin-top:2%;">
+   <div class="form-group">
+    <label for="name">Name </label>
+    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter your full name" required>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="Telephone" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="building">Building</label>
+    <select class="form-control" id="building" required>
+      <option value="1"> Boylston - A</option>
+      <option value="2"> Boylston - B</option>
+      <option value="3"> Cape House</option>
+      <option value="4"> Collins</option>
+      <option value="5"> Copley - North</option>
+      <option value="6"> Copley - South</option>
+      <option value="7"> Falcone - East</option>
+      <option value="8"> Falcone - North</option>
+      <option value="9"> Falcone - West</option>
+      <option value="10"> Fenway</option>
+      <option value="11"> Forest</option>
+      <option value="12"> Kresge</option>
+      <option value="13"> Miller</option>
+      <option value="15"> Orchard - North</option>
+      <option value="14"> Orchard - South</option>
+      <option value="16"> Rhodes</option>
+      <option value="17"> Slade</option>
+      <option value="18"> Stratton House</option>
+      <option value="19"> Student Center</option>
+      <option value="20"> Trees - Alder</option>
+      <option value="21"> Trees - Birch</option>
+      <option value="22"> Trees - Cedar</option>
+      <option value="23"> Trees - Elm</option>
+      <option value="24"> Trees - Maple</option>
+      <option value="25"> Trees - Oak</option>
+      <option value="26"> Trees - Spruce </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="room">Room Number </label>
+    <input type="number" class="form-control" id="room" aria-describedby="room" placeholder="Enter your room number" required>
+  </div>
+  <div class="row">
+      <div class="col-3">
+        <label for="choc">Chocolate Chip</label>
+        <input type="number" class="form-control" id="choc" aria-describedby="choc" required>
+      </div>
+      <div class="col-3">
+        <label for="dble">Double Chocolate</label>
+        <input type="number" class="form-control" id="dble" aria-describedby="dble" required>
+      </div>
+      <div class="col-3">
+        <label for="snick">Snicker-doodle</label>
+        <input type="number" class="form-control" id="snick" aria-describedby="snick" required>
+      </div>
+      <div class="col-3">
+        <br>
+        <label for="oat">Oatmeal</label>
+        <input type="number" class="form-control" id="oat" aria-describedby="oat" required>
+      </div>
+  </div>
+  <fieldset class="form-group" style="margin: 5%">
+  <span>Form of Payment</span>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked required>
+      Venmo
+    </label>
+  </div>
+  <div class="form-check">
+  <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" required>
+      Cash at the door
+    </label>
+  </div>
+</fieldset>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</center>

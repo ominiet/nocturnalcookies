@@ -15,9 +15,8 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
       $http.post('http://localhost:8080/api/users', user).then(function(response) {
         console.log(response);
       });
-
-
-
     };
+
+        
 
   }]);

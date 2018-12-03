@@ -43,14 +43,14 @@
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.delivered}}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.orderTime | date:'shortDate'}}</td>
    		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.name }}</td>
-   		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.phone }}</td>
-       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)"">{{ order.building }} {{ order.room }}</td>
+   		 <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.phoneNumber }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.building }} {{ order.room }}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.cc }}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.dc }}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.sd }}</td>
        <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.om }}</td>
-       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)}}</td>
-       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">${{ calculateCost(parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om)) }}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">{{ order.cc + order.dc + order.sd + order.om}}</td>
+       <td data-toggle="modal" data-target="#myModal" ng-click="updateOrderOfInterest(order)">${{ calculateCost(order.cc + order.dc + order.sd + order.om) }}</td>
        <td><i class="fas fa-check" ng-click="deliverCookies(order)"></i></td>
        <td><i class="fa fa-trash" ng-click="deleteOrder(order)" aria-hidden="true"></i></td>
    	 </tr>
@@ -78,7 +78,7 @@
             <li>{{ orderOfInterest.sd }} Snickerdoodle</li>
             <li>{{ orderOfInterest.om }} Oatmeal</li>
           </ul>
-          <p>TOTAL COOKIES: <strong>{{ parseInt(order.cc) + parseInt(order.dc) + parseInt(order.sd) + parseInt(order.om) }}</strong> | TOTAL COST: <strong>${{ calculateCost(parseInt(orderOfInterest.cc) + parseInt(orderOfInterest.dc) + parseInt(orderOfInterest.sd) + parseInt(orderOfInterest.om)) }}</strong></p>
+          <p>TOTAL COOKIES: <strong>{{orderOfInterest.cc + orderOfInterest.dc + orderOfInterest.sd + orderOfInterest.om }}</strong> | TOTAL COST: <strong>${{ calculateCost(orderOfInterest.cc + orderOfInterest.dc + orderOfInterest.sd + orderOfInterest.om) }}</strong></p>
           </div>
         </div>
         <div class="modal-footer">

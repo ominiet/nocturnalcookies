@@ -596,8 +596,8 @@ Main Components
   opacity: 1;
 }
 .quantity-selector {
-  width: 33%;
-  margin: 0 auto;
+  width: 28%;
+  margin-left:5px;
   margin-bottom: 1em;
 }
 

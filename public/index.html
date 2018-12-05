@@ -50,6 +50,15 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#/contact">Contact</a>
           </li>
+          <li class="nav-item" ng-show= "login">
+            <a class="nav-link js-scroll-trigger" href="#/admin">Admin</a>
+          </li>
+          <li class="nav-item" ng-show="isOwner">
+            <a class="nav-link js-scroll-trigger" href="#/owner">Owner</a>
+          </li>
+          <li class="nav-item" ng-show="isOwner">
+            <a class="nav-link js-scroll-trigger" href="#/signup">Create User</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -81,13 +90,10 @@
         </div>
         <div class="col-md-4">
           <ul class="list-inline quicklinks">
-            <li class="footer-item">
+            <li class="footer-item" ng-hide="login">
               <a href="#/login">Log In</a>
             </li>
-            <li class="footer-item">
-              <a href="#/signup">Create User</a>
-            </li>
-            <li class="footer-item">
+            <li class="footer-item" ng-show="login">
               <a href="#/logout">Logout</a>
             </li>
           </ul>

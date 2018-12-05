@@ -1,16 +1,17 @@
-angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
-    function ($scope, $http, $routeParams, $location, loggedin, $rootScope) {
-        //$rootScope.Scope.defined = false;
+app.controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+    function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.orderOfInterest = {};
 
         $http.get('/loggedin').success(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = true;
-            console.log($scope.loggedin);
+            if (response.role === "Owner") {
+                $rootScope.isOwner =true;
+                console.log("set isOwner");
+                console.log(response);
+            }
+            $rootScope.login = true;
         }).error(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = false;
-            console.log($scope.loggedin);
+            $rootScope.isOwner = false;
+            $rootScope.login = false;
         });
 
         // $scope.newOrder = {};
@@ -46,7 +47,7 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             }
             user.role = 'Employee';
             $http.post('http://localhost:8080/api/users', user).then(function (response) {
-                $location.url('/login')
+                $location.url('/owner')
             });
         };
         // $scope.checkout = function () {

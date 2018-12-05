@@ -1,6 +1,7 @@
-angular.module('listings', []);
-
-var app = angular.module('myApp', ['ngRoute', 'listings']);
+var app = angular.module('myApp', ['ngRoute'])
+.run(['$rootScope', function($rootScope) {
+  $rootScope.login = false;
+}]);
 
 app.run(function($rootScope) {
     $rootScope.currentOrder = {};
@@ -24,6 +25,9 @@ app.config(function ($routeProvider) {
                 deferred.reject();
                 $location.url('/login');
             }
+        }).error(function(){
+          deferred.reject();
+          $location.url('/login');
         });
 
         return deferred.promise;
@@ -37,16 +41,17 @@ app.config(function ($routeProvider) {
         $http.get('/loggedin').success(function(user){
             // Authenticated
             if (user !== '0' && user.role === 'Owner') {
-                console.log("Authenticated from Resolve!");
                 deferred.resolve(true);
             }
             // Not Authenticated
             else {
                 $rootScope.message = 'You need to log in.';
-                console.log("You need to log in.");
                 deferred.reject();
                 $location.url('/login');
             }
+        }).error(function(){
+          deferred.reject();
+          $location.url('/login');
         });
 
         return deferred.promise;
@@ -74,7 +79,10 @@ app.config(function ($routeProvider) {
   })
   .when('/signup', {
     templateUrl: 'public/signup.html',
-    controller: 'mainController'
+    controller: 'mainController',
+    resolve: {
+      loggedin : checkOwner
+    }
   })
   .when('/checkout/:cc/:dc/:sd/:om', {
     templateUrl: 'public/checkout.html',

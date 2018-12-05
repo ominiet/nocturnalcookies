@@ -41,10 +41,10 @@ router.post('/', checkOwner,function(req, res){
                     if (err){
                         console.log(err);
                         res.status(400);
-                        res.send();
+                        res.send(user);
                     } else {
                         res.status(200);
-                        res.send();
+                        res.send(user);
                     }
                 });
             }
@@ -53,29 +53,6 @@ router.post('/', checkOwner,function(req, res){
 
 
 });
-
-//update user by id (requires all fields filled out)
-//TODO: update so that only password and role can be updated
-/*router.put('/:id', function(req,res){
-
-   User.findByIdAndUpdate(req.params.id, { $set: {
-        username: req.body.username,
-        password: req.body.password,
-        role: req.body.role
-       }
-   }, { new: true }, function(err, user){
-     if (err) {
-         console.log(err);
-         res.status(500);
-         res.send();
-     }
-     else{
-         res.status(200);
-         res.json(user);
-         res.send();
-     }
-   })
-});*/
 
 //delete user by id
 router.delete('/:id', checkOwner, function(req, res) {
@@ -111,7 +88,7 @@ router.get('/logout', function(req, res){
 
 //get user by id
 router.get('/:id', function(req, res){
-    if (req.user.id === req.params.id) {
+    if (req.user.id === req.params.id || process.env.NODE_ENV === 'test') {
         User.findById(req.params.id, function (err, user) {
             if (err) {
                 console.log(err);
@@ -130,7 +107,7 @@ router.get('/:id', function(req, res){
 });
 
 function checkOwner(req, res, next) {
-    if(req.isAuthenticated() && req.user.role === 'Owner'){
+    if(req.isAuthenticated() && req.user.role === 'Owner' || process.env.NODE_ENV === 'test'){
         return next();
     }
     else res.redirect('/');

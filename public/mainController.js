@@ -1,6 +1,6 @@
-angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
-    function ($scope, $http, $routeParams, $location, $rootScope) {
 
+app.controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+    function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.orderOfInterest = {};
         $scope.newOrder = {};
 
@@ -18,17 +18,19 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
         }
 
         $http.get('/loggedin').success(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = true;
-            console.log($scope.loggedin);
+            if (response.role === "Owner") {
+                $rootScope.isOwner =true;
+                console.log("set isOwner");
+                console.log(response);
+            }
+            $rootScope.login = true;
         }).error(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = false;
-            console.log($scope.loggedin);
+            $rootScope.isOwner = false;
+            $rootScope.login = false;
         });
 
-        $http.get('api/orders').then(function (response) {
 
+        $http.get('api/orders').then(function (response) {
             $scope.orders = response.data;
             console.log($scope.orders);
 
@@ -36,7 +38,7 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             console.log('Could not get orders', error);
         });
 
-        $http.get('http://localhost:8080/api/users').then(function (response) {
+        $http.get('api/users').then(function (response) {
             $scope.users = response.data;
             //console.log($scope.users);
         }, function (error) {
@@ -51,8 +53,8 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
                 return 'Error';
             }
             user.role = 'Employee';
-            $http.post('http://localhost:8080/api/users', user).then(function (response) {
-                $location.url('/login')
+            $http.post('api/users', user).then(function (response) {
+                $location.url('/owner')
             });
         };
 
@@ -70,7 +72,7 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
         };
 
         $scope.signIn = function (user) {
-            $http.post('http://localhost:8080/api/users/login', user).then(function (response) {
+            $http.post('api/users/login', user).then(function (response) {
                 if (response.status === 200) $location.url('/admin');
                 else $location.url('/login');
             });
@@ -80,12 +82,14 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             console.log(order);
 
             $http.delete("/api/orders/" + order._id).then(function () {
+              $scope.orders = $scope.orders.filter(function(o) { return o._id != order._id});
             })
         };
         $scope.deleteUser = function (user) {
             console.log(user);
 
             $http.delete("/api/users/" + user._id).then(function () {
+              $scope.users = $scope.users.filter(function(u) { return u._id != user._id});
             })
         };
 
@@ -93,7 +97,6 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             order.delivered = true;
             console.log(order);
             $http.put("api/orders/" + order._id, order).then(function () {
-
             });
         };
 

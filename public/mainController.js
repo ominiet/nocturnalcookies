@@ -24,14 +24,14 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
         //
         //     $scope.newOrder.om = $rootScope.numom;
         // }
-        $http.get('http://localhost:8080/api/orders').then(function (response) {
+        $http.get('api/orders').then(function (response) {
             $scope.orders = response.data;
             //console.log($scope.orders);
         }, function (error) {
             console.log('Could not get orders', error);
         });
 
-        $http.get('http://localhost:8080/api/users').then(function (response) {
+        $http.get('api/users').then(function (response) {
             $scope.users = response.data;
             //console.log($scope.users);
         }, function (error) {
@@ -46,7 +46,7 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
                 return 'Error';
             }
             user.role = 'Employee';
-            $http.post('http://localhost:8080/api/users', user).then(function (response) {
+            $http.post('api/users', user).then(function (response) {
                 $location.url('/owner')
             });
         };
@@ -62,7 +62,7 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
         // };
 
         $scope.signIn = function (user) {
-            $http.post('http://localhost:8080/api/users/login', user).then(function (response) {
+            $http.post('api/users/login', user).then(function (response) {
                 if (response.status === 200) $location.url('/admin');
                 else $location.url('/login');
             });
@@ -72,12 +72,14 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
             console.log(order);
 
             $http.delete("/api/orders/" + order._id).then(function () {
+              $scope.orders = $scope.orders.filter(function(o) { return o._id != order._id});
             })
         };
         $scope.deleteUser = function (user) {
             console.log(user);
 
             $http.delete("/api/users/" + user._id).then(function () {
+              $scope.users = $scope.users.filter(function(u) { return u._id != user._id});
             })
         };
 
@@ -85,7 +87,6 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
             order.delivered = true;
             console.log(order);
             $http.put("api/orders/" + order._id, order).then(function () {
-
             });
         };
         $scope.placeOrder = function(order){

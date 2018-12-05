@@ -1,14 +1,16 @@
 <!-- Login Screen-->
 <br>
+<div style="margin: 10%">
 <center>
   <h2>Log In</h2>
-<form ng-submit="signIn(user)">
+<form ng-submit="signIn(user)" style="margin-top: 25px">
   User name:<br>
-<input type="text" name="username" ng-model="user.username"><br>
+<input type="text" name="username" ng-model="user.username" ><br>
   User password:<br>
 <input type="password" name="psw" ng-model="user.password">
 <br>
-  <button type="submit" >Log In</button>
+  <button id="loginbtn" type="submit" >Log In</button>
 </form>
   </center>
+</div>
 <br>

@@ -2,6 +2,11 @@ angular.module('listings', []);
 
 var app = angular.module('myApp', ['ngRoute', 'listings']);
 
+app.run(function($rootScope) {
+    $rootScope.currentOrder = {};
+});
+
+
 app.config(function ($routeProvider) {
     var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
         // Initialize a new promise
@@ -71,8 +76,12 @@ app.config(function ($routeProvider) {
     templateUrl: 'public/signup.html',
     controller: 'mainController'
   })
-  .when('/checkout', {
+  .when('/checkout/:cc/:dc/:sd/:om', {
     templateUrl: 'public/checkout.html',
+    controller: 'mainController'
+  })
+  .when('/confirmation/:oid', {
+    templateUrl: 'public/confirmation.html',
     controller: 'mainController'
   })
   .when('/admin', {
@@ -92,7 +101,7 @@ app.config(function ($routeProvider) {
   .when('/logout', {
       templateUrl: '/public/logout.html',
         controller: 'logoutController'
-    })
+  })
   .otherwise({
     redirectTo: '/'
   });

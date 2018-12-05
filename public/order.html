@@ -1,3 +1,14 @@
+      <header class="masthead">
+          <div class="container">
+            <div class="intro-text">
+              <img class="img-fluid" src="/public/img/logo.png" alt="" style="margin-bottom: 3%">
+              <div class="intro-heading text-uppercase">Nocturnal Cookies</div>
+              <div class="intro-lead-in">Cravings Never Sleep</div>
+
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#cookies" target="_self">Order Cookies</a>
+            </div>
+          </div>
+        </header>
 <!-- Portfolio Grid -->
 <section class="bg-light" id="cookies" ng-controller="mainController">
   <div class="container">
@@ -30,8 +41,7 @@
 <div class="row">
       <div class="col-sm-6 col-md-3 portfolio-item">
 
-
-
+        <label>Qty</label>
         <input class="form-control quantity-selector" type="number" id="ccq" ng-model="cc">
         <img class="cookie-img" src="/public/img/Cookies/chocolate-chip-sm.png" alt="">
 
@@ -43,9 +53,9 @@
       </div>
       <div class="col-sm-6 col-md-3 portfolio-item">
 
-
+        <label>Qty</label>
         <input class="form-control quantity-selector" type="number" id="dcq" ng-model="dc">
-          <img class="cookie-img" src="/public/img/Cookies/double-chocolate-sm.png" alt="">
+        <img class="cookie-img" src="/public/img/Cookies/double-chocolate-sm.png" alt="">
 
         <div class="portfolio-caption">
           <h4>Double Chocolate</h4>
@@ -55,6 +65,7 @@
 
       <div class="col-sm-6 col-md-3 portfolio-item">
 
+        <label>Qty</label>
         <input class="form-control quantity-selector" type="number" id="sdq" ng-model="sd">
         <img class="cookie-img" src="/public/img/Cookies/snickerdoodle-sm.png" alt="">
 
@@ -66,17 +77,18 @@
 
       <div class="col-sm-6 col-md-3 portfolio-item">
 
+          <label>Qty</label>
           <input class="form-control quantity-selector" type="number" id="omq" ng-model="om">
           <img class="cookie-img" src="/public/img/Cookies/oatmeal-sm.png" alt="">
 
-        <div class="portfolio-caption">
+          <div class="portfolio-caption">
           <h4>Oatmeal</h4>
           <p class="text-muted">Chewy oatmeal cookie with a hint of a sweet caramel glaze. Not your Grandma’s oatmeal cookie.</p>
         </div>
       </div>
     </div>
     <div class="row">
-    <button class="btn btn-large btn-block btn-primary" type="button" ng-click="checkout()">CHECKOUT</button>
+    <button id="checkoutBtn" type="button" ng-click="checkout()">CHECKOUT</button>
     </div>
   </div>
 </section>

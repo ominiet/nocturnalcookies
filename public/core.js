@@ -57,56 +57,56 @@ app.config(function ($routeProvider) {
     };
     $routeProvider
   .when('/', {
-    templateUrl: 'public/order.html',
+    templateUrl: '/views/order.html',
     controller: 'mainController',
   })
   .when('/order', {
-    templateUrl: 'public/order.html',
+    templateUrl: '/views/order.html',
     controller: 'mainController',
   })
   .when('/team', {
-    templateUrl: 'public/team.html',
+    templateUrl: '/views/team.html',
     controller: 'mainController',
   })
   .when('/contact', {
-    templateUrl: 'public/contact.html',
+    templateUrl: '/views/contact.html',
     controller: 'mainController'
   })
   .when('/login', {
-    templateUrl: 'public/signin.html',
+    templateUrl: '/views/signin.html',
     controller: 'mainController'
   })
   .when('/signup', {
-    templateUrl: 'public/signup.html',
+    templateUrl: '/views/signup.html',
     controller: 'mainController',
     resolve: {
       loggedin : checkOwner
     }
   })
   .when('/checkout/:cc/:dc/:sd/:om', {
-    templateUrl: 'public/checkout.html',
+    templateUrl: '/views/checkout.html',
     controller: 'mainController'
   })
   .when('/confirmation/:oid', {
-    templateUrl: 'public/confirmation.html',
+    templateUrl: '/views/confirmation.html',
     controller: 'mainController'
   })
   .when('/admin', {
-    templateUrl: 'public/admin.html',
+    templateUrl: '/views/admin.html',
     controller: 'mainController',
       resolve: {
         loggedin : checkLoggedin
       }
   })
   .when('/owner', {
-    templateUrl: 'public/owner.html',
+    templateUrl: '/views/owner.html',
     controller: 'mainController',
       resolve: {
           loggedin : checkOwner
       }
   })
   .when('/logout', {
-      templateUrl: '/public/logout.html',
+      templateUrl: '/views/logout.html',
         controller: 'logoutController'
   })
   .otherwise({

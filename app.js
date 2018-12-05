@@ -62,7 +62,7 @@ app.use('/api/orders', orders);
 
 
 //start app listening
-const port = process.env.Port || 8080;
+const port = process.env.PORT || 8080;
 
 app.listen(port);
 console.log("App Listening on port: " + port);

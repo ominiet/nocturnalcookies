@@ -70,19 +70,18 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
                 else $location.url('/login');
             });
         };
-        //TODO: make so you dont have to reload the page
         $scope.deleteOrder = function (order) {
             console.log(order);
 
             $http.delete("/api/orders/" + order._id).then(function () {
-              $scope.orders = $scope.orders.filter(function(o) { return o._id != order._id});
+              $scope.orders = $scope.orders.filter(function(o) { return o._id !== order._id});
             })
         };
         $scope.deleteUser = function (user) {
             console.log(user);
 
             $http.delete("/api/users/" + user._id).then(function () {
-              $scope.users = $scope.users.filter(function(u) { return u._id != user._id});
+              $scope.users = $scope.users.filter(function(u) { return u._id !== user._id});
             })
         };
 

@@ -28,7 +28,7 @@ app.get('/loggedin', function(req, res){
 });
 
 //set up routes for application
-app.use('/', express.static(__dirname + '/'));
+app.use('/', express.static(__dirname + '/public/'));
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 
 

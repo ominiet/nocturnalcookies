@@ -34,7 +34,6 @@ app.config(function ($routeProvider) {
     };
     var checkOwner = function($q, $timeout, $http, $location, $rootScope){
         // Initialize a new promise
-        console.log("resolve started");
         var deferred = $q.defer();
 
         // Make an AJAX call to check if the user is logged in

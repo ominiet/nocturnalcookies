@@ -14,14 +14,11 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
           $scope.newOrder.dc = parseInt($routeParams.dc);
           $scope.newOrder.sd = parseInt($routeParams.sd);
           $scope.newOrder.om = parseInt($routeParams.om);
-          console.log('if reached');
         }
 
         $http.get('/loggedin').success(function (response) {
             if (response.role === "Owner") {
                 $rootScope.isOwner =true;
-                console.log("set isOwner");
-                console.log(response);
             }
             $rootScope.login = true;
         }).error(function (response) {
@@ -32,7 +29,6 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
 
         $http.get('api/orders').then(function (response) {
             $scope.orders = response.data;
-            console.log($scope.orders);
 
         }, function (error) {
             console.log('Could not get orders', error);
@@ -40,14 +36,12 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
 
         $http.get('api/users').then(function (response) {
             $scope.users = response.data;
-            //console.log($scope.users);
         }, function (error) {
             console.log('Could not get users', error);
         });
 
 
         $scope.signUp = function (user) {
-            console.log('INPUT USER' + user);
             if (user.password !== user.password2) {
                 console.log('Passwords do not match');
                 return 'Error';
@@ -59,7 +53,6 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
         };
 
         $scope.checkout = function () {
-            console.log("Checkout");
 
             if($scope.cc === undefined) $scope.cc = 0;
             if($scope.dc === undefined) $scope.dc = 0;
@@ -103,8 +96,6 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
         $scope.placeOrder = function(order){
           console.log(order);
             $http.post("api/orders/", order).then(function (response) {
-                console.log('PLACE ORDER RESPONSE');
-                console.log(response);
                 $location.url('/confirmation/' + response.data._id);
 
             });

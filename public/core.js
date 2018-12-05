@@ -75,6 +75,10 @@ app.config(function ($routeProvider) {
     templateUrl: 'public/checkout.html',
     controller: 'mainController'
   })
+  .when('/confirmation', {
+    templateUrl: 'public/confirmation.html',
+    controller: 'mainController'
+  })
   .when('/admin', {
     templateUrl: 'public/admin.html',
     controller: 'mainController',

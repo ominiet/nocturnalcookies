@@ -60,7 +60,6 @@ router.delete('/:id', checkOwner, function(req, res) {
         if (err){
             res.status(500);
             res.send();
-            console.log(err);
         }
         else {
             res.status(200);
@@ -88,10 +87,9 @@ router.get('/logout', function(req, res){
 
 //get user by id
 router.get('/:id', function(req, res){
-    if (req.user.id === req.params.id || process.env.NODE_ENV === 'test') {
+    if(req.user || process.env.NODE_ENV ==='test'){
         User.findById(req.params.id, function (err, user) {
             if (err) {
-                console.log(err);
                 res.status(404);
                 res.send();
             } else {

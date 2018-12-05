@@ -1,7 +1,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
-    session = require('express-session');
+    session = require('express-session'),
+    config = require('config');
 
 var app = express();
 
@@ -38,7 +39,7 @@ app.get('/', function(req, res) {
 
 //Set up mongoose. Will be moved to another location later
 var mongoose = require('mongoose');
-var dbUri = require('./config/database').database;
+var dbUri = config.db;
 
 mongoose.connect(dbUri, { useNewUrlParser: true});
 mongoose.Promise = global.Promise;
@@ -55,11 +56,9 @@ db.once('open', function(){
 //API routes
 let users = require('./backend/api/usersRoutes');
 let orders = require('./backend/api/ordersRoutes');
-let anns = require('./backend/api/annRoutes');
 
 app.use('/api/users', users);
 app.use('/api/orders', orders);
-app.use('/api/announcements', anns);
 
 
 //start app listening
@@ -67,3 +66,5 @@ const port = process.env.Port || 8080;
 
 app.listen(port);
 console.log("App Listening on port: " + port);
+
+module.exports = app;

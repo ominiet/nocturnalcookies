@@ -1,67 +1,71 @@
-angular.module('listings').controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
-    function ($scope, $http, $routeParams, $location, loggedin, $rootScope) {
-        //$rootScope.Scope.defined = false;
+
+app.controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
+    function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.orderOfInterest = {};
+        $scope.newOrder = {};
+
+        if($routeParams.oid)
+        {
+          $http.get('/api/orders/' + $routeParams.oid).then(function(response) {
+            $scope.currentOrder = response.data;
+          });
+        } else if($routeParams.cc || $routeParams.dc || $routeParams.sd || $routeParams.om) {
+          $scope.newOrder.cc = parseInt($routeParams.cc);
+          $scope.newOrder.dc = parseInt($routeParams.dc);
+          $scope.newOrder.sd = parseInt($routeParams.sd);
+          $scope.newOrder.om = parseInt($routeParams.om);
+        }
 
         $http.get('/loggedin').success(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = true;
-            console.log($scope.loggedin);
+            if (response.role === "Owner") {
+                $rootScope.isOwner =true;
+            }
+            $rootScope.login = true;
         }).error(function (response) {
-            console.log("res: " + response.status);
-            $scope.loggedin = false;
-            console.log($scope.loggedin);
+            $rootScope.isOwner = false;
+            $rootScope.login = false;
         });
 
-        // $scope.newOrder = {};
-        // if ($rootScope.defined) {
-        //     $scope.newOrder.cc = $rootScope.numdc;
-        //
-        //     $scope.newOrder.dc = $rootScope.numdc;
-        //
-        //     $scope.newOrder.sd = $rootScope.numsd;
-        //
-        //     $scope.newOrder.om = $rootScope.numom;
-        // }
-        $http.get('http://localhost:8080/api/orders').then(function (response) {
+
+        $http.get('api/orders').then(function (response) {
             $scope.orders = response.data;
-            //console.log($scope.orders);
+
         }, function (error) {
             console.log('Could not get orders', error);
         });
 
-        $http.get('http://localhost:8080/api/users').then(function (response) {
+        $http.get('api/users').then(function (response) {
             $scope.users = response.data;
-            //console.log($scope.users);
         }, function (error) {
             console.log('Could not get users', error);
         });
 
 
         $scope.signUp = function (user) {
-            console.log('INPUT USER' + user);
             if (user.password !== user.password2) {
                 console.log('Passwords do not match');
                 return 'Error';
             }
             user.role = 'Employee';
-            $http.post('http://localhost:8080/api/users', user).then(function (response) {
-                $location.url('/login')
+            $http.post('api/users', user).then(function (response) {
+                $location.url('/owner')
             });
         };
-        // $scope.checkout = function () {
-        //     console.log("Checkout");
-        //     $rootScope.numcc = $scope.cc;
-        //     $rootScope.numdc = $scope.dc;
-        //     $rootScope.numsd = $scope.sd;
-        //     $rootScope.numom = $scope.om;
-        //     $rootScope.defined = true;
-        //     console.log($rootScope.numcc);
-        //     $location.path('/checkout');
-        // };
+
+        $scope.checkout = function () {
+
+            if($scope.cc === undefined) $scope.cc = 0;
+            if($scope.dc === undefined) $scope.dc = 0;
+            if($scope.sd === undefined) $scope.sd = 0;
+            if($scope.om === undefined) $scope.om = 0;
+
+
+
+            $location.path('/checkout/'+ $scope.cc +'/'+ $scope.dc +'/'+ $scope.sd +'/'+ $scope.om);
+        };
 
         $scope.signIn = function (user) {
-            $http.post('http://localhost:8080/api/users/login', user).then(function (response) {
+            $http.post('api/users/login', user).then(function (response) {
                 if (response.status === 200) $location.url('/admin');
                 else $location.url('/login');
             });
@@ -71,12 +75,14 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             console.log(order);
 
             $http.delete("/api/orders/" + order._id).then(function () {
+              $scope.orders = $scope.orders.filter(function(o) { return o._id != order._id});
             })
         };
         $scope.deleteUser = function (user) {
             console.log(user);
 
             $http.delete("/api/users/" + user._id).then(function () {
+              $scope.users = $scope.users.filter(function(u) { return u._id != user._id});
             })
         };
 
@@ -84,13 +90,14 @@ angular.module('listings').controller('mainController', ['$scope', '$http', '$ro
             order.delivered = true;
             console.log(order);
             $http.put("api/orders/" + order._id, order).then(function () {
-
             });
         };
+
         $scope.placeOrder = function(order){
           console.log(order);
-            $http.post("api/orders/", order).then(function () {
-                $location.url("/");
+            $http.post("api/orders/", order).then(function (response) {
+                $location.url('/confirmation/' + response.data._id);
+
             });
         };
 

@@ -1,0 +1,3 @@
+{
+  "db": "mongodb://test:testpass1@ds133368.mlab.com:33368/noc-cookies-test"
+}

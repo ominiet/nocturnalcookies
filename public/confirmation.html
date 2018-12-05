@@ -1,48 +1,52 @@
 <div>
-  <h2 id="orderTitle"> Your Order Has Been Placed </h2>
-<div style= "" >
+  <h2 id="OrderTitle"> Your Order Has Been Placed </h2>
+<div style="">
   <center>
  <table class="table">
   <!-- <thead class="thead-dark"> -->
     <tr>
-     <th>Time Ordered</th>
-     <td>12:00</td>
+     <th>Timestamp</th>
+     <td>{{ currentOrder.orderTime | date:'shortDate'}}</td>
     </tr>
     <tr>
      <th>Name</th>
-     <td>Andrew Samole</td>
+     <td>{{ currentOrder.name }}</td>
     </tr>
     <tr>
      <th>Phone</th>
-     <td>3055885134</td>
-    </tr>     
+     <td>{{ currentOrder.phoneNumber }}</td>
+    </tr>
     <tr>
      <th>Location</th>
-     <td>Rawlings Hall A</td>
+     <td>{{ currentOrder.buildilng }} {{ currentOrder.room }}</td>
     </tr>
-    <tr>
+    <tr ng-if="currentOrder.cc > 0">
      <th># of Chocolate Chip</th>
-     <td>1</td>
+     <td>{{ currentOrder.cc }}</td>
     </tr>
-    <tr>
+    <tr ng-if="currentOrder.dc > 0">
      <th># of Double Chocolate</th>
-     <td>2</td>
+     <td>{{ currentOrder.dc }}</td>
     </tr>
-    <tr>
+    <tr ng-if="currentOrder.sd > 0">
      <th># of Snickerdoodle</th>
-     <td>3</td>
-    </tr>     
-    <tr>
+     <td>{{ currentOrder.sd }}</td>
+    </tr>
+    <tr ng-if="currentOrder.om > 0">
      <th># of Oatmeal</th>
-     <td>4</td>
+     <td>{{ currentOrder.om }}</td>
     </tr>
     <tr>
      <th>Total # of Cookies</th>
-     <td>10</td>
+     <td>{{ currentOrder.cc + currentOrder.dc + currentOrder.sd + currentOrder.om}}</td>
+    </tr>
+    <tr>
+     <th>Payment Method</th>
+     <td>{{ currentOrder.payment }}</td>
     </tr>
     <tr>
      <th>Total Cost</th>
-     <td>$16</td>
+     <td><strong>${{ calculateCost(currentOrder.cc + currentOrder.dc + currentOrder.sd + currentOrder.om) }}</strong></td>
     </tr>
 <!--   <tbody>
 

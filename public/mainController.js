@@ -1,6 +1,21 @@
+
 app.controller('mainController', ['$scope', '$http', '$routeParams', '$location', '$rootScope',
     function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.orderOfInterest = {};
+        $scope.newOrder = {};
+
+        if($routeParams.oid)
+        {
+          $http.get('/api/orders/' + $routeParams.oid).then(function(response) {
+            $scope.currentOrder = response.data;
+          });
+        } else if($routeParams.cc || $routeParams.dc || $routeParams.sd || $routeParams.om) {
+          $scope.newOrder.cc = parseInt($routeParams.cc);
+          $scope.newOrder.dc = parseInt($routeParams.dc);
+          $scope.newOrder.sd = parseInt($routeParams.sd);
+          $scope.newOrder.om = parseInt($routeParams.om);
+          console.log('if reached');
+        }
 
         $http.get('/loggedin').success(function (response) {
             if (response.role === "Owner") {
@@ -14,19 +29,11 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
             $rootScope.login = false;
         });
 
-        // $scope.newOrder = {};
-        // if ($rootScope.defined) {
-        //     $scope.newOrder.cc = $rootScope.numdc;
-        //
-        //     $scope.newOrder.dc = $rootScope.numdc;
-        //
-        //     $scope.newOrder.sd = $rootScope.numsd;
-        //
-        //     $scope.newOrder.om = $rootScope.numom;
-        // }
+
         $http.get('api/orders').then(function (response) {
             $scope.orders = response.data;
-            //console.log($scope.orders);
+            console.log($scope.orders);
+
         }, function (error) {
             console.log('Could not get orders', error);
         });
@@ -50,16 +57,19 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
                 $location.url('/owner')
             });
         };
-        // $scope.checkout = function () {
-        //     console.log("Checkout");
-        //     $rootScope.numcc = $scope.cc;
-        //     $rootScope.numdc = $scope.dc;
-        //     $rootScope.numsd = $scope.sd;
-        //     $rootScope.numom = $scope.om;
-        //     $rootScope.defined = true;
-        //     console.log($rootScope.numcc);
-        //     $location.path('/checkout');
-        // };
+
+        $scope.checkout = function () {
+            console.log("Checkout");
+
+            if($scope.cc === undefined) $scope.cc = 0;
+            if($scope.dc === undefined) $scope.dc = 0;
+            if($scope.sd === undefined) $scope.sd = 0;
+            if($scope.om === undefined) $scope.om = 0;
+
+
+
+            $location.path('/checkout/'+ $scope.cc +'/'+ $scope.dc +'/'+ $scope.sd +'/'+ $scope.om);
+        };
 
         $scope.signIn = function (user) {
             $http.post('api/users/login', user).then(function (response) {
@@ -89,10 +99,14 @@ app.controller('mainController', ['$scope', '$http', '$routeParams', '$location'
             $http.put("api/orders/" + order._id, order).then(function () {
             });
         };
+
         $scope.placeOrder = function(order){
           console.log(order);
-            $http.post("api/orders/", order).then(function () {
-                $location.url("/");
+            $http.post("api/orders/", order).then(function (response) {
+                console.log('PLACE ORDER RESPONSE');
+                console.log(response);
+                $location.url('/confirmation/' + response.data._id);
+
             });
         };
 

@@ -53,7 +53,19 @@ section h3.section-subheading {
   text-transform: none;
   font-family: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
-
+#orderTitle {
+  margin-top: 10%;
+  margin-bottom: 5%;
+  text-align:center;
+}
+.table{
+  width:50%;
+  margin:auto;
+  margin-bottom: 5%;
+}
+.table th{
+  float: 20px;
+}
 @media (min-width: 768px) {
   section {
     /*padding: 150px 0;*/

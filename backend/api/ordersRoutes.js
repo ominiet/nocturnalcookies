@@ -21,7 +21,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
 
 //get order by id
-router.get('/:id', ensureAuthenticated, function(req, res){
+router.get('/:id', function(req, res){
     Order.findById(req.params.id, function(err, order){
         if (err){
             console.log(err);

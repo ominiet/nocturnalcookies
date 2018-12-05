@@ -1,193 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<div>
+  <h2 style="margin:10%; text-align:center;"> Your Order Has Been Placed </h2>
 
-<head>
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+     <th>Time Ordered</th>
+     <td>12:00</th>
+     </tr>
+     
+     <th scope="col">Phone</th>
+     <th scope="col">Location</th>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Nocturnal Cookies - Bentley's Cookie Delivery Service</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/scripts/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="/scripts/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="/public/css/agency.css" rel="stylesheet">
-  <link rel="stylesheet" href="/public/css/reset.css"> <!-- CSS reset -->
-  <link rel="stylesheet" href="/public/css/cartstyle.css"> <!-- Resource style -->
-
-</head>
-
-<body ng-controller="mainController">
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="altNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="/">Nocturnal Cookies</a>
-      <i class="fas fa-bars"></i>
-      <ul class="navbar-nav text-uppercase ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
-
-
-
-  <!-- Order Screen-->
-  <center>
-    <h2 style="margin-top: 10%">Complete Your Order</h2>
-    <form style = "width: 30%; margin-top:2%;">
-     <div class="form-group">
-      <label for="name">Name </label>
-      <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter your full name" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone Number</label>
-      <input type="Telephone" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter email" required>
-      <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="building">Building</label>
-      <select class="form-control" id="building" required>
-        <option value="1"> Boylston - A</option>
-        <option value="2"> Boylston - B</option>
-        <option value="3"> Cape House</option>
-        <option value="4"> Collins</option>
-        <option value="5"> Copley - North</option>
-        <option value="6"> Copley - South</option>
-        <option value="7"> Falcone - East</option>
-        <option value="8"> Falcone - North</option>
-        <option value="9"> Falcone - West</option>
-        <option value="10"> Fenway</option>
-        <option value="11"> Forest</option>
-        <option value="12"> Kresge</option>
-        <option value="13"> Miller</option>
-        <option value="15"> Orchard - North</option>
-        <option value="14"> Orchard - South</option>
-        <option value="16"> Rhodes</option>
-        <option value="17"> Slade</option>
-        <option value="18"> Stratton House</option>
-        <option value="19"> Student Center</option>
-        <option value="20"> Trees - Alder</option>
-        <option value="21"> Trees - Birch</option>
-        <option value="22"> Trees - Cedar</option>
-        <option value="23"> Trees - Elm</option>
-        <option value="24"> Trees - Maple</option>
-        <option value="25"> Trees - Oak</option>
-        <option value="26"> Trees - Spruce </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="room">Room Number </label>
-      <input type="number" class="form-control" id="room" aria-describedby="room" placeholder="Enter your room number" required>
-    </div>
-    <div class="row">
-        <div class="col-3">
-          <label for="choc">Chocolate Chip</label>
-          <input type="number" class="form-control" id="choc" aria-describedby="choc" required>
-        </div>
-        <div class="col-3">
-          <label for="dble">Double Chocolate</label>
-          <input type="number" class="form-control" id="dble" aria-describedby="dble" required>
-        </div>
-        <div class="col-3">
-          <label for="snick">Snicker-doodle</label>
-          <input type="number" class="form-control" id="snick" aria-describedby="snick" required>
-        </div>
-        <div class="col-3">
-          <br>
-          <label for="oat">Oatmeal</label>
-          <input type="number" class="form-control" id="oat" aria-describedby="oat" required>
-        </div>
-    </div>
-    <fieldset class="form-group" style="margin: 5%">
-    <span>Form of Payment</span>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked required>
-        Venmo
-      </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" required>
-        Cash at the door
-      </label>
-    </div>
-  </fieldset>
-      <button type="submit" class="btn btn-primary">Submit</button>
-
-    </form>
-  </center>
-
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <span class="copyright">Copyright &copy; NocturnalCookies 2018</span>
-      </div>
-      <div class="col-md-4">
-        <ul class="list-inline social-buttons">
-          <li class="list-inline-item">
-            <a href="#">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <ul class="list-inline quicklinks">
-          <li class="list-inline-item">
-            <a href="#">Privacy Policy</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Terms of Use</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Bootstrap core JavaScript -->
-<script src="/scripts/jquery/jquery.min.js"></script>
-<script src="/scripts/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Plugin JavaScript -->
-
-<!-- Contact form JavaScript -->
-<script src="/public/js/jqBootstrapValidation.js"></script>
-<script src="/public/js/contact_me.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="/public/js/main.js"></script>
-
-<!-- Random number for Order number-->
-
- </body>
-
- </html>
+     <th scope="col">Total Cookies</th>
+     <th scope="col">Order Total</th>
+   </tr>
+ </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    
+  </tbody>
+</table>
+<table class="table" style="margin-top:5%;">
+  <thead class="thead-dark">
+    <tr>
+     <th scope="col"># Chocolate</th>
+     <th scope="col"># Double Choc</th>
+     <th scope="col"># Snickerdoodle</th>
+     <th scope="col"># Oatmeal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+    <th></th>
+    <th></th>
+      <th id="total">Total :</th>
+      <td>200</td>
+    </tr>
+   </tfoot>
+</table>
+</div>

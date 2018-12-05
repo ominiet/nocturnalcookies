@@ -39,7 +39,10 @@ time you run the app)
 separate instance for testing
 3. Authentication - You may use the login button in the footer to access the
 admin login page
-4. Deployed - The link to our deployed app is (http://nocturnal-cookies.herokuapp.com)
+4. Deployed - The link to our deployed app is (https://nocturnal-cookies.herokuapp.com)
+    * Credentials for the owner are: 
+        * Username: owner
+        * Password: pass
 5. Code Review - Testing was performed (Go to testing section of README to see more)
 and we have separated all code files in to logical locations
 6. General - Plan changes are in the plan section below

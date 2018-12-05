@@ -5,6 +5,8 @@ var app = angular.module('myApp', ['ngRoute'])
 
 app.run(function($rootScope) {
     $rootScope.currentOrder = {};
+    $rootScope.isOwner = false;
+    $rootScope.login = false;
 });
 
 
@@ -58,49 +60,47 @@ app.config(function ($routeProvider) {
     $routeProvider
   .when('/', {
     templateUrl: '/views/order.html',
-    controller: 'mainController',
+    controller: 'orderController',
   })
   .when('/order', {
     templateUrl: '/views/order.html',
-    controller: 'mainController',
+    controller: 'orderController',
   })
   .when('/team', {
     templateUrl: '/views/team.html',
-    controller: 'mainController',
   })
   .when('/contact', {
     templateUrl: '/views/contact.html',
-    controller: 'mainController'
   })
   .when('/login', {
     templateUrl: '/views/signin.html',
-    controller: 'mainController'
+    controller: 'signInController'
   })
-  .when('/signup', {
+  .when('/create-user', {
     templateUrl: '/views/signup.html',
-    controller: 'mainController',
+    controller: 'createUserController',
     resolve: {
       loggedin : checkOwner
     }
   })
   .when('/checkout/:cc/:dc/:sd/:om', {
     templateUrl: '/views/checkout.html',
-    controller: 'mainController'
+    controller: 'orderController'
   })
   .when('/confirmation/:oid', {
     templateUrl: '/views/confirmation.html',
-    controller: 'mainController'
+    controller: 'orderController'
   })
   .when('/admin', {
     templateUrl: '/views/admin.html',
-    controller: 'mainController',
+    controller: 'adminController',
       resolve: {
         loggedin : checkLoggedin
       }
   })
   .when('/owner', {
     templateUrl: '/views/owner.html',
-    controller: 'mainController',
+    controller: 'ownerController',
       resolve: {
           loggedin : checkOwner
       }
